@@ -1,4 +1,4 @@
 export default {
-  Query: require("./Query"),
-  Mutation: require("./Mutation"),
-};
+	Query: require("./Query"),
+	Mutation: require("./Mutation")
+}
