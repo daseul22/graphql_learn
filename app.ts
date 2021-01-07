@@ -11,15 +11,18 @@ const typeDefs = gql`
 	enum Role {
 		ADMIN
 		USER
+		EVERY
 	}
 	type Query {
 		users(test: String): User
 		str: String @auth(req: ADMIN)
 	}
-	type User @auth(req: USER) {
+	type User { #@auth(req: USER)
 		id: ID
-		email: String
-		password: String
+		role: Role
+		name: String #@auth
+		email: String #@auth
+		password: String #@auth
 		posts: [Post]
 	}
 	type Post {
@@ -28,9 +31,16 @@ const typeDefs = gql`
 		content: String
 	}
 	type Mutation {
-		userSignIn(account: AccountInput): User
+		userSignIn(account: SignInInput): User
+		userSignUp(account: SignUpInput): User
+		userSignOut: String @auth(req: EVERY)
 	}
-	input AccountInput {
+	input SignInInput {
+		email: String
+		password: String
+	}
+	input SignUpInput {
+		name: String
 		email: String
 		password: String
 	}
@@ -40,7 +50,17 @@ const prisma = new PrismaClient()
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
-	context: prisma,
+	cors: {
+		credentials: true,
+		origin: "http://localhost:3000"
+	},
+	context: ({ req, res }) => {
+		// res.setHeader("Authorization", "ABC")// 셋 헤더
+		// console.log(req.headers) //헤더
+		//res.cookie("AAAs", "SDFSDF") // 셋 쿠키
+		//console.log(req.headers.cookie) //쿠키
+		return { req, res, prisma }
+	},
 	schemaDirectives
 })
 

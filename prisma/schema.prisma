@@ -9,6 +9,7 @@ generator client {
 
 model User {
     id Int @id @default(autoincrement())
+    role String
     name String
     email String
     password String
@@ -22,3 +23,5 @@ model Post {
     user User? @relation(fields:[userId], references: [id])
     userId Int?
 }
+//npx prisma migrate dev --name init --preview-feature 
+// db 마이그레이션
