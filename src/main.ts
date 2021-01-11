@@ -1,0 +1,15 @@
+require("dotenv").config()
+import { ApolloServer } from "apollo-server"
+import schema from "./schema"
+import { createContext } from "./context"
+
+const { PORT } = process.env
+
+const server = new ApolloServer({
+	schema,
+	context: createContext
+})
+
+server.listen(PORT).then(({ url }) => {
+	console.log(`server ready at ${url}`)
+})
