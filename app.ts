@@ -2,7 +2,6 @@ require("dotenv").config()
 import { PrismaClient } from "@prisma/client"
 import { ApolloServer, gql } from "apollo-server"
 import schemaDirectives from "./directives"
-import resolvers from "./resolvers"
 const { PORT } = process.env
 
 const typeDefs = gql`
@@ -49,7 +48,6 @@ const typeDefs = gql`
 const prisma = new PrismaClient()
 const server = new ApolloServer({
 	typeDefs,
-	resolvers,
 	cors: {
 		credentials: true,
 		origin: "http://localhost:3000"

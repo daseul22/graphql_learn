@@ -1,4 +1,2 @@
-export default {
-	...require("./jwt-utils"),
-	...require("./cookie-utils")
-}
+export * from "./jwt-utils"
+export * from "./cookie-utils"
