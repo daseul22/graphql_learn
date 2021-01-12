@@ -1,7 +1,6 @@
 import { SchemaDirectiveVisitor } from "apollo-server"
 import { GraphQLField, GraphQLObjectType, defaultFieldResolver } from "graphql"
-import lib from "../lib"
-const { jwtVerification, getCookieValue } = lib
+import { jwtVerification, getCookieValue } from "../lib"
 
 class AuthDirective extends SchemaDirectiveVisitor {
 	// hook 같은 느낌 upperDirecrive를 타입정의에 추가해주면 항상 이 클래스를 통과한다.
@@ -51,7 +50,7 @@ class AuthDirective extends SchemaDirectiveVisitor {
 				}
 
 				const { req, res, prisma } = args[2] //  args[2] = context
-				const userRole = await jwtVerification(req, res, prisma)
+				const userRole = await jwtVerification(req, prisma)
 				console.log("필요 권한 :", reqRole)
 				if (reqRole !== userRole && userRole !== "ADMIN") {
 					//ADMIN이거나 접근권한이 있어야 접근가능

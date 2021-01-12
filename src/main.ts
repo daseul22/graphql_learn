@@ -10,6 +10,16 @@ const server = new ApolloServer({
 	context: createContext
 })
 
-server.listen(PORT).then(({ url }) => {
-	console.log(`server ready at ${url}`)
-})
+async function main() {
+	server.listen(PORT).then(({ url }) => {
+		console.log(`server ready at ${url}`)
+	})
+}
+
+main()
+	.catch(e => {
+		throw e
+	})
+	.finally(async () => {
+		console.log("end")
+	})

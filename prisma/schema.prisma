@@ -1,27 +1,27 @@
-datasource db {
-    provider = "mysql"
-    url = env("DATABASE_URL")
+generator client {
+  provider = "prisma-client-js"
 }
 
-generator client {
-    provider = "prisma-client-js"
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-    id Int @id @default(autoincrement())
-    role String
-    name String
-    email String
-    password String
-    posts Post[]
+  id       Int    @id @default(autoincrement())
+  role     String
+  name     String
+  email    String
+  password String
+  posts    Post[]
 }
 
 model Post {
-    id Int @id @default(autoincrement())
-    title String
-    content String?
-    user User? @relation(fields:[userId], references: [id])
-    userId Int?
+  id      Int     @id @default(autoincrement())
+  title   String
+  content String?
+  userId  Int?
+  user    User?   @relation(fields: [userId], references: [id])
+
+  @@index([userId], name: "userId")
 }
-//npx prisma migrate dev --name init --preview-feature 
-// db 마이그레이션
