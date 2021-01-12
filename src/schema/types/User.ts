@@ -53,6 +53,7 @@ export const UserQuery = extendType({
 	}
 })
 // =================== Muttation =========================
+
 export const UserMutation = extendType({
 	type: "Mutation",
 	definition(t) {

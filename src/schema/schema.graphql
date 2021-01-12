@@ -12,6 +12,7 @@ type Post {
   content: String
   id: Int!
   title: String!
+  userId: Int
 }
 
 input PostWhereUniqueInput {
@@ -19,6 +20,7 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  findManyPost(userId: Int!): [Post]
   findManyUser: [User]
   findOneUser(id: Int!): User
 }
