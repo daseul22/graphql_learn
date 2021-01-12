@@ -85,16 +85,17 @@ export const UserMutation = extendType({
 				email: nonNull(stringArg()),
 				password: nonNull(stringArg())
 			},
-			resolve(_root, { name, role, email, password }, ctx) {
-				const isExistEmail = ctx.prisma.user.findFirst({
+			resolve: async (_root, { name, role, email, password }, ctx) => {
+				const isExistEmail = await ctx.prisma.user.findFirst({
 					where: {
 						email
 					}
 				})
+				console.log(isExistEmail)
 				if (isExistEmail) throw new Error("존재하는 이메일")
 
-				const createdUser = ctx.prisma.user.create({
-					// role 빠진것도 찾아줌ㄷㄷ
+				const createdUser = await ctx.prisma.user.create({
+					// role 빠진것도 찾아줌
 					data: {
 						name,
 						role,
@@ -102,6 +103,7 @@ export const UserMutation = extendType({
 						password
 					}
 				})
+				console.log(createdUser)
 				return createdUser
 			}
 		})
