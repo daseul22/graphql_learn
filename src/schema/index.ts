@@ -1,25 +1,21 @@
 import { gql } from "apollo-server"
 
 export const typeDefs = gql`
-	directive @auth(req: Role = ADMIN) on FIELD_DEFINITION | OBJECT
+	directive @auth(req: Role = USER) on FIELD_DEFINITION | OBJECT
 	enum Role {
 		ADMIN
+		USER
 	}
 	type Query {
-		users(test: String): User
+		findOneUser(id: int): User! @auth
+		findManyUser: [User]! @auth(req: ADMIN)
 	}
-	type User { #@auth(req: USER)
-		id: ID
+	type User {
+		id: Int
 		role: Role
-		name: String #@auth
-		email: String #@auth
-		password: String #@auth
-		posts: [Post]
-	}
-	type Post {
-		id: ID
-		title: String
-		content: String
+		name: String
+		email: String
+		password: String
 	}
 	type Mutation {
 		userSignIn(account: SignInInput): User
@@ -32,6 +28,7 @@ export const typeDefs = gql`
 	}
 	input SignUpInput {
 		name: String
+		role: String
 		email: String
 		password: String
 	}

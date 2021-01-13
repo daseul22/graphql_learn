@@ -1,6 +1,6 @@
 import { tokenGenerator, getCookieValue } from "../lib"
-//_, args, ctx
-const userSignIn = async (_, { account: { email, password } }, ctx) => {
+
+const userSignIn = async (parents, { account: { email, password } }, ctx) => {
 	const { req, res, prisma } = ctx
 
 	console.log(getCookieValue(req.headers.cookie, "Bearer")) //토큰을 갖고 있는지 화인 directive에서 검증 ㄱㄱ
@@ -19,7 +19,7 @@ const userSignIn = async (_, { account: { email, password } }, ctx) => {
 	return user
 }
 
-const userSignUp = async (_, args, ctx) => {
+const userSignUp = async (parents, args, ctx) => {
 	const { prisma } = ctx
 	const {
 		account: { name, email, password }
@@ -43,7 +43,7 @@ const userSignUp = async (_, args, ctx) => {
 	return user
 }
 
-const userSignOut = async (_, args, ctx) => {
+const userSignOut = async (parents, args, ctx) => {
 	const { req, res } = ctx
 	res.cookie("Bearer", "")
 	return "로그아웃 성공"

@@ -25,7 +25,6 @@ export const jwtVerification = async (req, prisma) => {
 				id
 			}
 		})
-		console.log("권한 :", role)
-		return role
+		return role // role = 유저 권한
 	}
 }
