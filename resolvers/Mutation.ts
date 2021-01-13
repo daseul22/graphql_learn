@@ -1,5 +1,4 @@
-import utiles from "../lib"
-const { tokenGenerator, getCookieValue } = utiles
+import { tokenGenerator, getCookieValue } from "../lib"
 //_, args, ctx
 const userSignIn = async (_, { account: { email, password } }, ctx) => {
 	const { req, res, prisma } = ctx
@@ -12,7 +11,7 @@ const userSignIn = async (_, { account: { email, password } }, ctx) => {
 		}
 	})
 	console.log(user)
-	if (!user) throw new Error("이메일이나 비번 틀림")
+	if (!user) throw new Error("이메일이나 비밀번호가 틀립니다")
 
 	let token = tokenGenerator(user) // 로그인 성공 시 토큰 발급
 	//console.log(token)
@@ -30,7 +29,7 @@ const userSignUp = async (_, args, ctx) => {
 			email
 		}
 	})
-	if (isExistEmail) throw new Error("존재하는 이메일")
+	if (isExistEmail) throw new Error("존재하는 이메일입니다")
 
 	const user = await prisma.user.create({
 		data: {

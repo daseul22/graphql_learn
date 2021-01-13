@@ -1,3 +1,1 @@
-export default {
-	...require("./AuthDirective")
-}
+export * from "./AuthDirective"

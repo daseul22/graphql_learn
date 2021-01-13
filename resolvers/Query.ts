@@ -7,11 +7,6 @@ const users = (_, args, ctx) => {
 	}
 }
 
-const str = (_, args, ctx) => {
-	return "test str is this"
-}
-
 module.exports = {
-	users,
-	str
+	users
 }
