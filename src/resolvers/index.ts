@@ -1,4 +1,2 @@
-export default {
-	Query: require("./Query"),
-	Mutation: require("./Mutation")
-}
+export * as Query from "./Query"
+export * as Mutation from "./Mutation"

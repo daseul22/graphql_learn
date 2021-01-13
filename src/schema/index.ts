@@ -7,7 +7,7 @@ export const typeDefs = gql`
 		USER
 	}
 	type Query {
-		findOneUser(id: int): User! @auth
+		findOneUser(id: Int): User! @auth
 		findManyUser: [User]! @auth(req: ADMIN)
 	}
 	type User {

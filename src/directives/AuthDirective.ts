@@ -15,7 +15,7 @@ class AuthDirective extends SchemaDirectiveVisitor {
 
 	public ensureFieldsWrapped(objectType: GraphQLObjectType) {
 		if (objectType["_authFieldsWrapped"]) return
-		console.log(objectType["_reqAuthRole"]) // 부모 기준으로 role이 뭔지 판단가능
+		// objectType["_reqAuthRole"] = 부모 기준 권한
 
 		const fields = objectType.getFields() // ojbect의 필드들을 반환
 		for (let fieldName in fields) {

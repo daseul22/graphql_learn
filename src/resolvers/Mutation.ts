@@ -1,25 +1,26 @@
 import { tokenGenerator, getCookieValue } from "../lib"
 
-const userSignIn = async (parents, { account: { email, password } }, ctx) => {
+export const userSignIn = async (
+	parents,
+	{ account: { email, password } },
+	ctx
+) => {
 	const { req, res, prisma } = ctx
 
-	console.log(getCookieValue(req.headers.cookie, "Bearer")) //토큰을 갖고 있는지 화인 directive에서 검증 ㄱㄱ
 	const user = await prisma.user.findFirst({
 		where: {
 			email,
 			password
 		}
 	})
-	console.log(user)
 	if (!user) throw new Error("이메일이나 비밀번호가 틀립니다")
 
 	let token = tokenGenerator(user) // 로그인 성공 시 토큰 발급
-	//console.log(token)
 	res.cookie("Bearer", token) // 쿠키 발행
 	return user
 }
 
-const userSignUp = async (parents, args, ctx) => {
+export const userSignUp = async (parents, args, ctx) => {
 	const { prisma } = ctx
 	const {
 		account: { name, email, password }
@@ -38,19 +39,12 @@ const userSignUp = async (parents, args, ctx) => {
 			password
 		}
 	})
-	console.log(user) // create user
 
 	return user
 }
 
-const userSignOut = async (parents, args, ctx) => {
+export const userSignOut = async (parents, args, ctx) => {
 	const { req, res } = ctx
 	res.cookie("Bearer", "")
 	return "로그아웃 성공"
-}
-
-module.exports = {
-	userSignIn,
-	userSignUp,
-	userSignOut
 }
