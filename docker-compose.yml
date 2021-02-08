@@ -1,9 +1,10 @@
 version: "3.5"
+
 services:
-  graphql_learn:
+  graphql:
     image: graphql:1.0
     build:
-      context: /opt/docker/sites/graphql_learn
+      context: ./
       dockerfile: Dockerfile
       network: host
     restart: always
