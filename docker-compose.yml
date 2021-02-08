@@ -10,7 +10,7 @@ services:
     restart: always
     network_mode: "host"
     environment:
-      JWT_SECRET: $JWT_SECRET
-      PORT: $PORT
-      DATABASE_URL: $DATABASE_URL
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT}
+      DATABASE_URL: ${DATABASE_URL}
     command: pwd 
