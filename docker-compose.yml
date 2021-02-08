@@ -1,4 +1,4 @@
-ersion: "3.5"
+version: "3.5"
 services:
   graphql_learn:
     image: graphql:1.0
