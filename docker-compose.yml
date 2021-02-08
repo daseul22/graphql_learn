@@ -1,0 +1,15 @@
+ersion: "3.5"
+services:
+  graphql_learn:
+    image: graphql:1.0
+    build:
+      context: /opt/docker/sites/graphql_learn
+      dockerfile: Dockerfile
+      network: host
+    restart: always
+    network_mode: "host"
+    environment:
+      JWT_SECRET: $JWT_SECRET
+      PORT: $PORT
+      DATABASE_URL: $DATABASE_URL
+    command: pwd 

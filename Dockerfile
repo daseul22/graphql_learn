@@ -4,4 +4,3 @@ WORKDIR /graphql_learn
 
 RUN env
 
-CMD pwd
