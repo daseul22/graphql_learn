@@ -9,7 +9,7 @@ jobs:
         command: |
           set -x
           git clone git@github.com:daseul22/graphql_learn.git
-          docker-compose up -d --build
+          docker build -t graphql:1.0 . 
           env
 workflows:
   build:
