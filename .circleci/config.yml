@@ -3,14 +3,12 @@ jobs:
   build:
     machine: true
     steps:
-    - checkout
-    - run: 
-        name: build
-        command: |
-          set -x
-          git clone git@github.com:daseul22/graphql_learn.git
-          docker build -t graphql:1.0 . 
-          env
+      - checkout
+      - run:
+          name: build
+          command: |
+            set -x
+            docker build -t graphql:1.0 .
 workflows:
   build:
     jobs:
