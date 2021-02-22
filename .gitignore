@@ -1,5 +1,8 @@
 node_modules
 .env
+<<<<<<< HEAD
 prisma/migrations
 dist
 generated
+=======
+>>>>>>> b06ed7452df788a14cb71b97b9141fdbee1d216f

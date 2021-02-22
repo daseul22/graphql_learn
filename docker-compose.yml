@@ -1,0 +1,15 @@
+version: "3.0"
+
+services:
+  graphql:
+    image: graphql:1.0
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    network_mode: "host"
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT}
+      DATABASE_URL: ${DATABASE_URL}
+    command: pwd
