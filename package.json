@@ -4,7 +4,11 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "ts-node-dev --transpile-only --no-notify src/main.ts"
+		"dev": "ts-node-dev --transpile-only --no-notify src/main.ts",
+		"build": "tsc -p ./",
+		"start": "ts-node dist/src/main.js",
+		"prisma:gen": "npx prisma generate",
+		"prisma:migrate": "npx prisma migrate dev --name add --preview-feature"
 	},
 	"keywords": [],
 	"author": "",
@@ -15,8 +19,7 @@
 		"dataloader": "^2.0.0",
 		"dotenv": "^8.2.0",
 		"graphql": "^15.4.0",
-		"jsonwebtoken": "^8.5.1",
-		"nexus-plugin-prisma": "^0.28.0"
+		"jsonwebtoken": "^8.5.1"
 	},
 	"devDependencies": {
 		"@prisma/cli": "^2.13.1",
@@ -24,6 +27,8 @@
 		"@types/node": "^14.14.16",
 		"eslint-config-prettier": "^7.1.0",
 		"eslint-plugin-prettier": "^3.3.1",
+		"nexus": "^1.0.0",
+		"nexus-plugin-prisma": "^0.28.0",
 		"prettier": "^2.2.1",
 		"ts-node": "^9.1.1",
 		"ts-node-dev": "^1.1.1",

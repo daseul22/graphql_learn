@@ -11,16 +11,17 @@ export default makeSchema({
 	types,
 	plugins: [
 		nexusPrisma({
-			experimentalCRUD: true
+			//experimentalCRUD: true
 		}),
 		fieldAuthorizePlugin()
 	],
 	outputs: {
 		typegen: path.join(
 			__dirname,
-			"../../node_modules/@types/nexus-typegen/index.d.ts"
-		),
-		schema: path.join(__dirname, "./schema.graphql")
+			"../generated/nexus.ts"
+			// "../../node_modules/@types/nexus-typegen/index.d.ts"
+		)
+		//schema: path.join(__dirname, "../../node_modules/@types/schema.graphql")
 	},
 	contextType: {
 		module: require.resolve("../context"),
